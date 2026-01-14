@@ -57,9 +57,9 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-light mb-4 sm:mb-6 leading-tight tracking-wide text-gray-900 max-w-4xl mx-auto flex flex-col items-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 leading-tight tracking-tight text-gray-900 max-w-4xl mx-auto flex flex-col items-center">
               <span className="whitespace-nowrap">Innovative Technology Services</span>
-              <span className="text-blue-500/90 whitespace-nowrap">for Business Growth</span>
+              <span className="text-[#52b9fd] whitespace-nowrap">for Business Growth</span>
             </h2>
           </motion.div>
 
