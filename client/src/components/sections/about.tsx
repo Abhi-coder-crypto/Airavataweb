@@ -603,15 +603,15 @@ const CoreValues = () => {
             </div>
             
             {/* Content overlay */}
-            <div className="relative z-10 p-8 h-full flex flex-col items-start">
+            <div className="relative z-10 p-8 h-full flex flex-col items-center">
               {/* Header fixed at top with set height for alignment */}
-              <div className="h-12 flex items-center justify-start w-full mb-4">
+              <div className="h-12 flex items-center justify-center w-full mb-4">
                 <motion.h4
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
                   viewport={{ once: true }}
-                  className="font-medium text-2xl tracking-wide text-left text-white"
+                  className="font-medium text-2xl tracking-wide text-center text-white"
                   style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', 'system-ui', sans-serif" }}
                 >
                   {value.title}
@@ -619,13 +619,13 @@ const CoreValues = () => {
               </div>
               
               {/* Description centered vertically in remaining space */}
-              <div className="flex-1 flex items-start w-full">
+              <div className="flex-1 flex items-center w-full">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
                   viewport={{ once: true }}
-                  className="text-white leading-relaxed text-left text-lg font-light tracking-normal px-1"
+                  className="text-white leading-relaxed text-center text-lg font-light tracking-normal px-1"
                   style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', 'system-ui', sans-serif" }}
                 >
                   {value.description}
@@ -635,7 +635,7 @@ const CoreValues = () => {
               {/* Bottom section with accent line */}
               <div className="text-center mt-4 w-full flex flex-col justify-end pb-2">
                 <motion.div
-                  className="w-16 h-0.5 bg-white/60 rounded-full"
+                  className="w-16 h-0.5 bg-white/60 rounded-full mx-auto"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   transition={{ duration: 1, delay: index * 0.1 + 0.7 }}
