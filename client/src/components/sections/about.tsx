@@ -785,7 +785,7 @@ export default function ProfessionalAbout() {
               className="max-w-5xl mx-auto"
             >
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-6 md:mb-8 whitespace-nowrap md:whitespace-normal">Our Commitment to Excellence</h2>
-              <p className="text-lg md:text-2xl font-light text-gray-700 leading-relaxed mb-8 px-4 md:px-0 text-justify md:text-center max-w-[320px] mx-auto md:max-w-none">
+              <p className="text-lg md:text-2xl font-light text-gray-700 leading-relaxed mb-8 px-4 md:px-0 text-justify md:text-center">
                 "We are committed to delivering technology solutions that not only meet today's challenges 
                 but anticipate tomorrow's opportunities. Our success is measured by the sustainable growth 
                 and competitive advantage we create for our clients."
