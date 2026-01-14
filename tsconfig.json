@@ -1,0 +1,43 @@
+{
+  "include": [
+    "src/components/**/*", 
+    "src/pages/**/*", 
+    "src/hooks/**/*", 
+    "src/types/**/*",
+    "src/*.ts", 
+    "src/*.tsx"
+  ],
+  "exclude": [
+    "node_modules", 
+    "build", 
+    "dist", 
+    "server/**/*", 
+    "**/*.test.ts"
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo.client",
+    "noEmit": true,
+    "module": "ESNext",
+    "target": "ES2022",
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "types": ["node", "react", "react-dom"],
+    "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "@/*": ["./components/*"]
+    },
+    "declaration": false,
+    "sourceMap": false
+  }
+}

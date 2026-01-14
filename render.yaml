@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: atravata-website
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+    # Add your database URL here if you have one
+    # - key: DATABASE_URL
+    #   fromDatabase:
+    #     name: your-database-name
+    #     property: connectionString
