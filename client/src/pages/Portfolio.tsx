@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Service } from "@shared/schema";
+import type { Service } from "../../shared/schema";
 
 import websiteDevImg from "@assets/2_1765447271354.png";
 import mobileAppImg from "@assets/3_1765447271355.png";
@@ -46,7 +46,7 @@ function ServiceImageSkeleton() {
   );
 }
 
-export default function Services() {
+export default function Portfolio() {
   const { data: services = [], isLoading } = useQuery<Service[]>({
     queryKey: ["/api/services"],
   });

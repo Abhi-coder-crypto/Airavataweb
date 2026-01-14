@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import type { Service, Project } from "@shared/schema";
+import type { Service, Project } from "../../shared/schema";
 
 const containerVariants = {
   hidden: { opacity: 0 },

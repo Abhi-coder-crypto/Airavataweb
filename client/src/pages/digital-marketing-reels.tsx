@@ -1,5 +1,5 @@
 import { Link, useParams } from "wouter";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { ArrowLeft, Play } from "lucide-react";
 import { motion } from "framer-motion";
 
