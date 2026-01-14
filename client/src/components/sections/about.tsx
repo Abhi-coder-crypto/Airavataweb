@@ -784,7 +784,7 @@ export default function ProfessionalAbout() {
               viewport={{ once: true }}
               className="max-w-5xl mx-auto"
             >
-              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-6 md:mb-8">Our Commitment to Excellence</h2>
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-6 md:mb-8 whitespace-nowrap md:whitespace-normal">Our Commitment to Excellence</h2>
               <p className="text-lg md:text-2xl font-light text-gray-700 leading-relaxed mb-8 px-4 md:px-0 text-justify md:text-center">
                 "We are committed to delivering technology solutions that not only meet today's challenges 
                 but anticipate tomorrow's opportunities. Our success is measured by the sustainable growth 
