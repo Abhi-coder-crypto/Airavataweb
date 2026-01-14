@@ -567,7 +567,7 @@ export default function ProfessionalAbout() {
     <section
       id="about" 
       ref={containerRef}
-      className="relative pt-2 pb-12 md:pt-12 md:pb-16 bg-gradient-to-br from-slate-50 via-white to-blue-50/20 overflow-hidden min-h-[auto]"
+      className="relative pt-2 pb-6 md:pt-12 md:pb-8 bg-gradient-to-br from-slate-50 via-white to-blue-50/20 overflow-hidden min-h-[auto]"
     >
       <motion.div style={{ y: backgroundY }}>
         <AnimatedBackground />

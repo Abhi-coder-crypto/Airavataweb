@@ -43,7 +43,7 @@ export default function Services() {
 
   return (
     <>
-      <section id="services" className="py-24 bg-white relative overflow-hidden">
+      <section id="services" className="py-12 bg-white relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-20 left-10 w-96 h-96 bg-blue-300/10 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-300/10 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float-delayed"></div>
@@ -55,7 +55,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight tracking-tight">
               Our Services
@@ -75,10 +75,13 @@ export default function Services() {
               >
                 <GlassCard className="rounded-3xl overflow-hidden h-full hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 transform group-hover:scale-[1.03] group-hover:-translate-y-2 relative border-2 hover:border-blue-300/50 flex flex-col">
                   <div className={`h-2 w-full bg-gradient-to-r ${service.gradient}`}></div>
-                  <div className="p-8 text-center flex-1 flex items-center justify-center min-h-[160px]">
-                    <h3 className="text-4xl md:text-5xl font-light text-gray-900 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500 leading-tight tracking-tight">
+                  <div className="p-8 text-center flex-1 flex flex-col items-center justify-center min-h-[160px]">
+                    <h3 className="text-2xl md:text-3xl font-light text-gray-900 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500 leading-tight tracking-tight whitespace-nowrap">
                       {service.title}
                     </h3>
+                    <p className="mt-4 text-sm font-light text-blue-500/80 group-hover:text-blue-600 transition-colors duration-300 uppercase tracking-widest">
+                      Click to know more
+                    </p>
                   </div>
                 </GlassCard>
               </motion.div>
