@@ -58,7 +58,7 @@ export default function Services() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-              Our Services in Transforming Business Through Innovative Technology
+              Our Services
             </h2>
           </motion.div>
 
@@ -76,7 +76,7 @@ export default function Services() {
                 <GlassCard className="rounded-3xl overflow-hidden h-full hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 transform group-hover:scale-[1.03] group-hover:-translate-y-2 relative border-2 hover:border-blue-300/50 flex flex-col">
                   <div className={`h-2 w-full bg-gradient-to-r ${service.gradient}`}></div>
                   <div className="p-8 text-center flex-1 flex items-center justify-center min-h-[160px]">
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500">
+                    <h3 className="text-4xl md:text-5xl font-bold text-gray-900 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500 leading-tight tracking-tight">
                       {service.title}
                     </h3>
                   </div>
