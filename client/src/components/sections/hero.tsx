@@ -3,7 +3,7 @@ import logoImg from "@assets/AIRAVATA_TECHNOLOGIES_LOGO_1768368815595.png";
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-[70vh] sm:min-h-[80vh] relative flex items-center justify-center overflow-hidden pt-12 sm:pt-16 bg-white">
+    <section id="home" className="min-h-[60vh] sm:min-h-[70vh] relative flex items-center justify-center overflow-hidden pt-12 sm:pt-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 text-center relative z-20">
         <div className="max-w-4xl mx-auto">
           {/* Company Logo */}
