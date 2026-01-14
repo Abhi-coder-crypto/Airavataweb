@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/layout/navbar";
 import Footer from "../components/layout/footer";
 import Hero from "../components/sections/hero";
@@ -6,7 +6,8 @@ import About from "../components/sections/about";
 import Services from "../components/sections/services";
 import Projects from "../components/sections/projects";
 
-export default function Home() {
+// The hook logic is inlined here to ensure it works correctly in the current environment
+function useScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -20,6 +21,12 @@ export default function Home() {
     window.addEventListener('scroll', updateScrollProgress);
     return () => window.removeEventListener('scroll', updateScrollProgress);
   }, []);
+
+  return scrollProgress;
+}
+
+export default function Home() {
+  const scrollProgress = useScrollProgress();
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">

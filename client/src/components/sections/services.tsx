@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 
 // Professional Glass Card Component with Blue-Cyan Theme

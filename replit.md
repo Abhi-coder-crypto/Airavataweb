@@ -57,9 +57,9 @@ Preferred communication style: Simple, everyday language.
 ## External Dependencies
 
 ### Email Service
-- **EmailJS**: Client-side email sending for contact form
-- Service ID, Template ID, and Public Key configured in `contact.tsx`
-- Loaded dynamically via CDN script
+- **Digital Marketing Portfolio**: Integrated a complete marketing showcase with brand categories, reels, and project galleries.
+- **Portfolio Section**: Added a comprehensive portfolio gallery with project details, technical stack visualizations, and image lightboxes.
+- **API Endpoints**: Implemented backend routes for dynamic portfolio data retrieval.
 
 ### Database
 - **Neon Database**: Serverless PostgreSQL (`@neondatabase/serverless`)
