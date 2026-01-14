@@ -3,7 +3,7 @@ import logoImg from "@assets/AIRAVATA_TECHNOLOGIES_LOGO_1768368815595.png";
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-[60vh] sm:min-h-[70vh] relative flex items-center justify-center overflow-hidden pt-12 sm:pt-16 bg-white">
+    <section id="home" className="min-h-[50vh] sm:min-h-[70vh] relative flex items-center justify-center overflow-hidden pt-8 sm:pt-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 text-center relative z-20">
         <div className="max-w-4xl mx-auto">
           {/* Company Logo */}
@@ -42,7 +42,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-black/90 mb-8 sm:mb-12 max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed font-light tracking-wide px-2 sm:px-0"
+            className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-black/90 mb-4 sm:mb-12 max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed font-light tracking-wide px-2 sm:px-0"
           >
             Transforming businesses through cutting-edge technology solutions, AI-powered innovation, and digital excellence.
           </motion.p>

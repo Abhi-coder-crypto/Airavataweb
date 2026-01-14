@@ -567,7 +567,7 @@ export default function ProfessionalAbout() {
     <section
       id="about" 
       ref={containerRef}
-      className="relative pt-8 pb-12 md:pt-12 md:pb-16 bg-gradient-to-br from-slate-50 via-white to-blue-50/20 overflow-hidden min-h-[auto]"
+      className="relative pt-2 pb-12 md:pt-12 md:pb-16 bg-gradient-to-br from-slate-50 via-white to-blue-50/20 overflow-hidden min-h-[auto]"
     >
       <motion.div style={{ y: backgroundY }}>
         <AnimatedBackground />
@@ -577,7 +577,7 @@ export default function ProfessionalAbout() {
         {/* Header Section */}
         <motion.div
           style={{ y: textY }}
-          className="text-center mb-20"
+          className="text-center mb-8 md:mb-20"
         >
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
