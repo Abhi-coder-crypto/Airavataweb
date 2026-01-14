@@ -5,8 +5,6 @@ import Hero from "../components/sections/hero";
 import About from "../components/sections/about";
 import Services from "../components/sections/services";
 import Projects from "../components/sections/projects";
-import Contact from "../components/sections/contact";
-import Brands from '../components/sections/brands';
 import { useScrollProgress } from "../hooks/use-scroll-progress";
 
 export default function Home() {
@@ -24,7 +22,6 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Brands/>
         <Services />
         <Projects />
         <Contact />
