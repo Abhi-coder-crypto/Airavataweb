@@ -163,7 +163,7 @@ export default function ProjectsGallery() {
                             loading="lazy"
                           />
                           <img
-                            src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image}
+                            src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
                             alt={`${project.name} screen 2`}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"

@@ -48,27 +48,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`[API] Fetching projects for slug: ${slug}`);
       const service = await db.collection("services").findOne({ slug: slug });
       
-      let query: any = { 
-        $or: [
-          { serviceSlug: slug },
-          { category: slug }
-        ]
-      };
+      let query: any = {};
 
       if (service) {
         const serviceIdStr = service._id.toString();
         console.log(`[API] Found service: ${service.title} (${serviceIdStr})`);
-        query.$or.push({ "serviceId": service._id });
-        query.$or.push({ "serviceId": serviceIdStr });
-        query.$or.push({ "serviceName": service.title });
+        query = {
+          $or: [
+            { serviceId: service._id },
+            { serviceId: serviceIdStr },
+            { serviceSlug: slug },
+            { category: slug },
+            { serviceName: service.title }
+          ]
+        };
+      } else {
+        query = { 
+          $or: [
+            { serviceSlug: slug },
+            { category: slug }
+          ]
+        };
       }
 
       const dbProjects = await db.collection("projects").find(query).toArray();
 
-      if (dbProjects.length > 0) {
-        console.log(`[API] Successfully fetched ${dbProjects.length} projects for ${slug}`);
-        return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
-      }
+      console.log(`[API] Successfully fetched ${dbProjects.length} projects for ${slug}`);
+      return res.json(dbProjects.map(p => {
+        // Handle MongoDB ObjectId conversion safely
+        const id = p._id?.$oid || p._id?.toString() || "";
+        const serviceId = p.serviceId?.$oid || p.serviceId?.toString() || "";
+        
+        console.log(`[API] Mapping project ${p.name}: id=${id}, serviceId=${serviceId}`);
+        
+        return { 
+          ...p, 
+          id,
+          serviceId
+        };
+      }));
 
       // Broadest possible fallback
       const allProjects = await db.collection("projects").find({}).toArray();
