@@ -39,50 +39,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/service/:slug", async (req, res) => {
     try {
       const db = await getDb();
-      // Try to find the service by slug or title
-      const service = await db.collection("services").findOne({ 
-        $or: [
-          { slug: req.params.slug },
-          { title: { $regex: new RegExp(`^${req.params.slug.replace(/-/g, ' ')}$`, 'i') } }
-        ]
-      });
+      // 1. Find the service by slug
+      const service = await db.collection("services").findOne({ slug: req.params.slug });
       
-      let queryConditions: any[] = [
-        { serviceSlug: req.params.slug },
-        { category: req.params.slug },
-        { serviceId: req.params.slug }
-      ];
-
       if (service) {
-        const serviceIdString = service._id.toString();
-        // The data is stored with serviceId as an ObjectId or nested $oid
-        queryConditions.push({ serviceId: service._id });
-        queryConditions.push({ serviceId: serviceIdString });
-        // Handle the nested structure seen in some MongoDB exports: { serviceId: { $oid: "..." } }
-        queryConditions.push({ "serviceId.$oid": serviceIdString });
-        
-        console.log(`Searching projects for service: ${service.title} (${serviceIdString})`);
+        const serviceIdStr = service._id.toString();
+        console.log(`Matching projects for service: ${service.title} (${serviceIdStr})`);
+
+        // 2. Query projects matching this service ID
+        const dbProjects = await db.collection("projects").find({
+          $or: [
+            { "serviceId": service._id },
+            { "serviceId": serviceIdStr },
+            { "serviceId.$oid": serviceIdStr },
+            { "serviceSlug": req.params.slug }
+          ]
+        }).toArray();
+
+        if (dbProjects.length > 0) {
+          console.log(`Successfully fetched ${dbProjects.length} projects for ${req.params.slug}`);
+          return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
+        }
       }
 
-      // Add a final fallback: search by part of the service title in the project's metadata if available
-      const dbProjects = await db.collection("projects").find({
-        $or: queryConditions
+      // 3. Fallback: Search by category or serviceName
+      const fallbackProjects = await db.collection("projects").find({
+        $or: [
+          { category: req.params.slug },
+          { serviceName: service?.title }
+        ]
       }).toArray();
-      
-      if (dbProjects.length > 0) {
-        console.log(`Successfully fetched ${dbProjects.length} projects for ${req.params.slug}`);
-        return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
+
+      if (fallbackProjects.length > 0) {
+        console.log(`Fetched ${fallbackProjects.length} projects via fallback for ${req.params.slug}`);
+        return res.json(fallbackProjects.map(p => ({ ...p, id: p._id.toString() })));
       }
 
-      console.log(`No projects found for ${req.params.slug} in MongoDB. Conditions: ${JSON.stringify(queryConditions)}`);
+      console.log(`No projects found for ${req.params.slug} in MongoDB.`);
     } catch (e) {
       console.error("MongoDB error", e);
     }
     
-    // Fallback logic
-    const service = services.find(s => s.slug === req.params.slug);
-    if (!service) return res.json([]);
-    const filtered = projects.filter(p => p.serviceId === service.id);
+    // 4. Static Fallback
+    const staticService = services.find(s => s.slug === req.params.slug);
+    if (!staticService) return res.json([]);
+    const filtered = projects.filter(p => p.serviceId === staticService.id);
     console.log(`Falling back to ${filtered.length} static projects for ${req.params.slug}`);
     res.json(filtered);
   });
