@@ -17,7 +17,14 @@ if (process.env.NODE_ENV === 'development') {
   };
 
   if (!globalWithMongo._mongoClientPromise) {
-    globalWithMongo._mongoClientPromise = client.connect();
+    console.log('Connecting to MongoDB...');
+    globalWithMongo._mongoClientPromise = client.connect().then(client => {
+      console.log('Successfully connected to MongoDB');
+      return client;
+    }).catch(err => {
+      console.error('Failed to connect to MongoDB:', err);
+      throw err;
+    });
   }
   clientPromise = globalWithMongo._mongoClientPromise;
 } else {
