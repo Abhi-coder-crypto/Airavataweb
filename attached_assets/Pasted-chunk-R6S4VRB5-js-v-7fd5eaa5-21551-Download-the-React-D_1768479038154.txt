@@ -1,0 +1,71 @@
+chunk-R6S4VRB5.js?v=7fd5eaa5:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+client:536 WebSocket connection to 'wss://28c67c74-2218-4125-998b-9271aa21e1a2-00-3q2ijt4adtgf2.janeway.replit.dev:24678/?token=XmN0MSiTnt4M' failed: 
+setupWebSocket @ client:536
+(anonymous) @ client:531
+client:560 [vite] server connection lost. Polling for restart...
+framer-motion.js?v=7fd5eaa5:696 Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+warnOnce @ framer-motion.js?v=7fd5eaa5:696
+measure @ framer-motion.js?v=7fd5eaa5:8496
+measure @ framer-motion.js?v=7fd5eaa5:8502
+measureAll @ framer-motion.js?v=7fd5eaa5:8530
+triggerCallback @ framer-motion.js?v=7fd5eaa5:366
+process @ framer-motion.js?v=7fd5eaa5:399
+processBatch @ framer-motion.js?v=7fd5eaa5:447
+requestAnimationFrame
+wake @ framer-motion.js?v=7fd5eaa5:463
+acc.<computed> @ framer-motion.js?v=7fd5eaa5:470
+(anonymous) @ framer-motion.js?v=7fd5eaa5:2399
+(anonymous) @ framer-motion.js?v=7fd5eaa5:7821
+(anonymous) @ framer-motion.js?v=7fd5eaa5:7787
+unmount @ framer-motion.js?v=7fd5eaa5:7787
+(anonymous) @ framer-motion.js?v=7fd5eaa5:815
+safelyDetachRef @ chunk-R6S4VRB5.js?v=7fd5eaa5:16731
+commitDeletionEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17495
+recursivelyTraverseDeletionEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17486
+commitDeletionEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17610
+recursivelyTraverseDeletionEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17486
+commitDeletionEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17577
+recursivelyTraverseDeletionEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17486
+commitDeletionEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17503
+recursivelyTraverseDeletionEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17486
+commitDeletionEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17503
+recursivelyTraverseDeletionEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17486
+commitDeletionEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17577
+commitDeletionEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17477
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17674
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17896
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17896
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17896
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17699
+recursivelyTraverseMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17685
+commitMutationEffectsOnFiber @ chunk-R6S4VRB5.js?v=7fd5eaa5:17794
+commitMutationEffects @ chunk-R6S4VRB5.js?v=7fd5eaa5:17663
+commitRootImpl @ chunk-R6S4VRB5.js?v=7fd5eaa5:19347
+commitRoot @ chunk-R6S4VRB5.js?v=7fd5eaa5:19277
+performSyncWorkOnRoot @ chunk-R6S4VRB5.js?v=7fd5eaa5:18895
+flushSyncCallbacks @ chunk-R6S4VRB5.js?v=7fd5eaa5:9119
+(anonymous) @ chunk-R6S4VRB5.js?v=7fd5eaa5:18627
+client:736  GET https://28c67c74-2218-4125-998b-9271aa21e1a2-00-3q2ijt4adtgf2.janeway.replit.dev:24678/ net::ERR_CONNECTION_TIMED_OUT
+ping @ client:736
+waitForSuccessfulPing @ client:749
+(anonymous) @ client:561
+client:736  GET https://28c67c74-2218-4125-998b-9271aa21e1a2-00-3q2ijt4adtgf2.janeway.replit.dev:24678/ net::ERR_CONNECTION_TIMED_OUT
+ping @ client:736
+waitForSuccessfulPing @ client:755
+await in waitForSuccessfulPing
+(anonymous) @ client:561
