@@ -157,18 +157,18 @@ export default function ProjectsGallery() {
                       {project.isMobileFirst ? (
                         <div className="flex items-center justify-center gap-4 h-full w-full">
                           <img
-                            src={project.galleryImages[0]}
+                            src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
                             alt={`${project.name} screen 1`}
                             className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                           />
                           <img
-                            src={project.galleryImages[1]}
+                            src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image}
                             alt={`${project.name} screen 2`}
                             className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                           />
-                          {project.galleryImages[2] && (
+                          {(project.galleryImages && project.galleryImages[2]) && (
                             <img
                               src={project.galleryImages[2]}
                               alt={`${project.name} screen 3`}
@@ -179,7 +179,7 @@ export default function ProjectsGallery() {
                         </div>
                       ) : (
                         <img
-                          src={project.imageUrl || (project.galleryImages && project.galleryImages[0])}
+                          src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
                           alt={project.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"

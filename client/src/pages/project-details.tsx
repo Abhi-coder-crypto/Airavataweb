@@ -206,7 +206,8 @@ export default function ProjectDetails() {
   const isLoading = projectLoading || serviceLoading;
   
   const galleryImages = project?.galleryImages || [];
-  const allImages = project ? [project.imageUrl, ...galleryImages] : [];
+  const mainImage = project?.imageUrl || project?.image || (galleryImages.length > 0 ? galleryImages[0] : "");
+  const allImages = project ? [mainImage, ...galleryImages.filter(img => img !== mainImage)] : [];
   
   const openLightbox = (index: number) => {
     if (allImages.length === 0) return;
@@ -318,7 +319,7 @@ export default function ProjectDetails() {
                   data-testid="image-main-desktop"
                 >
                   <img
-                    src={project?.imageUrl}
+                    src={mainImage}
                     alt={project?.name}
                     className={`${project?.isMobileFirst ? 'max-h-[700px] w-auto' : 'w-full h-auto'} object-contain mx-auto`}
                   />
@@ -367,7 +368,7 @@ export default function ProjectDetails() {
                 data-testid="image-main-mobile"
               >
                 <img
-                  src={project?.imageUrl}
+                  src={mainImage}
                   alt={project?.name}
                   className={`${project?.isMobileFirst ? 'max-h-[500px] w-auto' : 'w-full h-auto'} object-contain mx-auto`}
                 />
