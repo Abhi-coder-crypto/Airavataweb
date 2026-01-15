@@ -70,7 +70,7 @@ export default function Portfolio() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-black mb-3">
             Digital Portfolio
           </h2>
-          <p className="text-sm sm:text-lg lg:text-xl text-black whitespace-nowrap">
+          <p className="text-sm sm:text-lg lg:text-xl text-black">
             Transforming Business Through Innovative Technology
           </p>
         </motion.div>

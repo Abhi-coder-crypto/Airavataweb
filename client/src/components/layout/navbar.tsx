@@ -65,6 +65,7 @@ export default function Navbar() {
     { label: "Services", id: "services" },
     { label: "Products", id: "projects" },
     { label: "Portfolio", id: "portfolio", isPage: true, path: "/portfolio" },
+    { label: "Digital Marketing", id: "digital-marketing", isPage: true, path: "/projects/digital-marketing" },
     { label: "Contact", id: "contact" },
   ];
 
