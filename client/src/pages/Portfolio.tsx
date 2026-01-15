@@ -3,6 +3,8 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import type { Service } from "@shared/schema";
 
 // Import images exactly as they were used in the original
@@ -56,6 +58,19 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-white py-1 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl w-full mx-auto">
+        <div className="pt-4">
+          <Link href="/">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-black hover:bg-gray-100 mb-2"
+              data-testid="button-portfolio-back"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
