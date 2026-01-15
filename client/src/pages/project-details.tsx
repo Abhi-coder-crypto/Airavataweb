@@ -196,11 +196,11 @@ export default function ProjectDetails() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const { data: project, isLoading: projectLoading } = useQuery<Project>({
-    queryKey: ["/api/projects", projectId],
+    queryKey: [`/api/projects/${projectId}`],
   });
 
   const { data: service, isLoading: serviceLoading } = useQuery<Service>({
-    queryKey: ["/api/services", serviceSlug],
+    queryKey: [`/api/services/${serviceSlug}`],
   });
 
   const isLoading = projectLoading || serviceLoading;

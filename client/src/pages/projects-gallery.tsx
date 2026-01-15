@@ -47,11 +47,11 @@ export default function ProjectsGallery() {
   const serviceSlug = params.serviceSlug || "";
 
   const { data: service, isLoading: serviceLoading } = useQuery<Service>({
-    queryKey: ["/api/services", serviceSlug],
+    queryKey: [`/api/services/${serviceSlug}`],
   });
 
   const { data: projects = [], isLoading: projectsLoading } = useQuery<Project[]>({
-    queryKey: ["/api/projects/service", serviceSlug],
+    queryKey: [`/api/projects/service/${serviceSlug}`],
   });
 
   const isLoading = serviceLoading || projectsLoading;

@@ -39,46 +39,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/service/:slug", async (req, res) => {
     try {
       const db = await getDb();
-      const service = await db.collection("services").findOne({ slug: req.params.slug });
+      const slug = req.params.slug;
+      if (!slug || slug === "undefined") {
+        console.log("Received invalid slug in projects request");
+        return res.json([]);
+      }
+
+      console.log(`[API] Fetching projects for slug: ${slug}`);
+      const service = await db.collection("services").findOne({ slug: slug });
       
+      let query: any = { 
+        $or: [
+          { serviceSlug: slug },
+          { category: slug }
+        ]
+      };
+
       if (service) {
         const serviceIdStr = service._id.toString();
-        console.log(`Matching projects for service: ${service.title} (${serviceIdStr})`);
-
-        const dbProjects = await db.collection("projects").find({
-          $or: [
-            { "serviceId": service._id },
-            { "serviceId": serviceIdStr },
-            { "serviceId.$oid": serviceIdStr },
-            { "serviceSlug": req.params.slug }
-          ]
-        }).toArray();
-
-        if (dbProjects.length > 0) {
-          console.log(`Successfully fetched ${dbProjects.length} projects for ${req.params.slug}`);
-          return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
-        }
+        console.log(`[API] Found service: ${service.title} (${serviceIdStr})`);
+        query.$or.push({ "serviceId": service._id });
+        query.$or.push({ "serviceId": serviceIdStr });
+        query.$or.push({ "serviceId.$oid": serviceIdStr });
+        query.$or.push({ "serviceName": service.title });
+        query.$or.push({ "serviceId": { "$oid": serviceIdStr } });
       }
 
-      const fallbackProjects = await db.collection("projects").find({
-        $or: [
-          { category: req.params.slug },
-          { serviceName: service?.title },
-          { serviceId: service?._id }
-        ]
-      }).toArray();
+      const dbProjects = await db.collection("projects").find(query).toArray();
 
-      if (fallbackProjects.length > 0) {
-        console.log(`Fetched ${fallbackProjects.length} projects via fallback for ${req.params.slug}`);
-        return res.json(fallbackProjects.map(p => ({ ...p, id: p._id.toString() })));
+      if (dbProjects.length > 0) {
+        console.log(`[API] Successfully fetched ${dbProjects.length} projects for ${slug}`);
+        return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
       }
+
+      // Broadest possible fallback
+      const allProjects = await db.collection("projects").find({}).toArray();
+      const filtered = allProjects.filter(p => {
+        const sid = p.serviceId?.toString() || "";
+        const targetSid = service?._id?.toString() || "";
+        const pSlug = p.serviceSlug || p.category || "";
+        return sid === targetSid || pSlug.toLowerCase() === slug.toLowerCase();
+      });
+
+      if (filtered.length > 0) {
+        console.log(`[API] Fetched ${filtered.length} projects via broad filter fallback for ${slug}`);
+        return res.json(filtered.map(p => ({ ...p, id: p._id.toString() })));
+      }
+
+      console.log(`[API] No projects found for ${slug} in MongoDB.`);
     } catch (e) {
-      console.error("MongoDB error", e);
+      console.error("[API] MongoDB error", e);
     }
     
     const staticService = services.find(s => s.slug === req.params.slug);
     if (!staticService) return res.json([]);
     const filtered = projects.filter(p => p.serviceId === staticService.id);
+    console.log(`[API] Falling back to ${filtered.length} static projects for ${req.params.slug}`);
     res.json(filtered);
   });
 

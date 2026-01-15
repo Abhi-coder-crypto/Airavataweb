@@ -54,10 +54,12 @@ export default defineConfig(async ({ command, mode }) => {
     },
     // Add server configuration for development
     server: {
-      port: 3000,
-      host: true,
+      port: 5000,
+      host: "0.0.0.0",
       allowedHosts: true,
-      strictPort: true,
+      hmr: {
+        clientPort: 443,
+      },
     },
     // Ensure proper handling of environment variables
     define: {
