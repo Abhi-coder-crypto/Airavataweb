@@ -10,12 +10,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const db = await getDb();
       const dbServices = await db.collection("services").find({}).toArray();
+      console.log(`Fetched ${dbServices.length} services from MongoDB`);
       if (dbServices.length > 0) {
         return res.json(dbServices.map(s => ({ ...s, id: s._id.toString() })));
       }
     } catch (e) {
       console.error("MongoDB error, falling back to static services", e);
     }
+    console.log("Using static services fallback");
     res.json(services);
   });
 
@@ -37,22 +39,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/service/:slug", async (req, res) => {
     try {
       const db = await getDb();
-      const service = await db.collection("services").findOne({ slug: req.params.slug });
+      // Try to find the service by slug first
+      const service = await db.collection("services").findOne({ 
+        $or: [
+          { slug: req.params.slug },
+          { title: { $regex: new RegExp(`^${req.params.slug.replace(/-/g, ' ')}$`, 'i') } }
+        ]
+      });
       
+      let dbProjects: any[] = [];
+      const queryConditions: any[] = [
+        { serviceSlug: req.params.slug },
+        { category: req.params.slug }
+      ];
+
       if (service) {
         const serviceIdString = service._id.toString();
-        // Search projects by either ObjectId or string serviceId to be safe
-        const dbProjects = await db.collection("projects").find({
-          $or: [
-            { serviceId: serviceIdString },
-            { serviceId: service._id }
-          ]
-        }).toArray();
-
-        if (dbProjects.length > 0) {
-          return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
-        }
+        queryConditions.push({ serviceId: serviceIdString });
+        queryConditions.push({ serviceId: service._id });
+        console.log(`Found service in DB for slug ${req.params.slug}: ${serviceIdString}`);
       }
+
+      dbProjects = await db.collection("projects").find({
+        $or: queryConditions
+      }).toArray();
+      
+      if (dbProjects.length > 0) {
+        console.log(`Fetched ${dbProjects.length} projects for ${req.params.slug} from MongoDB`);
+        return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
+      }
+
+      // Final attempt: search by normalized service name in the project title or description if needed, 
+      // but usually serviceSlug or serviceId should be enough.
+      
     } catch (e) {
       console.error("MongoDB error", e);
     }
@@ -61,6 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const service = services.find(s => s.slug === req.params.slug);
     if (!service) return res.json([]);
     const filtered = projects.filter(p => p.serviceId === service.id);
+    console.log(`Falling back to ${filtered.length} static projects for ${req.params.slug}`);
     res.json(filtered);
   });
 
