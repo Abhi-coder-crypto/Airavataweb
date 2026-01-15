@@ -179,7 +179,7 @@ export default function ProjectsGallery() {
                         </div>
                       ) : (
                         <img
-                          src={project.imageUrl}
+                          src={project.imageUrl || (project.galleryImages && project.galleryImages[0])}
                           alt={project.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Service } from "../../shared/schema";
 
+// Import images exactly as they were used in the original
 import websiteDevImg from "@assets/2_1765447271354.png";
 import mobileAppImg from "@assets/3_1765447271355.png";
 import softwareDevImg from "@assets/4_1765447271355.png";
@@ -43,7 +44,7 @@ const cardVariants = {
 
 function ServiceImageSkeleton() {
   return (
-    <Skeleton className="w-full aspect-video rounded-lg" />
+    <Skeleton className="w-full aspect-[4/3] rounded-lg" />
   );
 }
 
@@ -88,18 +89,18 @@ export default function Portfolio() {
             className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
           >
             {services.map((service) => {
-              const serviceImage = imageMap[service.slug];
+              const serviceImage = imageMap[service.slug] || service.icon;
               return (
                 <motion.div key={service.id} variants={cardVariants}>
                   <Link href={`/projects/${service.slug}`}>
                     <div
-                      className="cursor-pointer rounded-lg"
+                      className="cursor-pointer rounded-lg hover-elevate transition-all"
                       data-testid={`image-service-${service.id}`}
                     >
                       <img
                         src={serviceImage}
                         alt={service.title}
-                        className="w-full h-auto object-cover rounded-lg"
+                        className="w-full h-auto object-cover rounded-lg shadow-sm hover:shadow-md"
                       />
                     </div>
                   </Link>
