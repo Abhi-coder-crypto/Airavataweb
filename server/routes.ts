@@ -119,7 +119,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const db = await getDb();
       const project = await db.collection("projects").findOne({ _id: new ObjectId(req.params.projectId) });
       if (project) {
-        return res.json({ ...project, id: project._id.toString(), serviceId: project.serviceId?.toString() });
+        // Return all fields from MongoDB to the frontend
+        return res.json({ 
+          ...project, 
+          id: project._id.toString(), 
+          serviceId: project.serviceId?.toString(),
+          imageUrl: project.imageUrl || project.image || project.image_url,
+          galleryImages: project.galleryImages || project.images || []
+        });
       }
     } catch (e) {
       console.error("MongoDB error", e);
@@ -132,10 +139,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/:serviceSlug/:projectId", async (req, res) => {
     try {
       const db = await getDb();
-      // Try to find by ID first regardless of slug
       const project = await db.collection("projects").findOne({ _id: new ObjectId(req.params.projectId) });
       if (project) {
-        return res.json({ ...project, id: project._id.toString(), serviceId: project.serviceId?.toString() });
+        return res.json({ 
+          ...project, 
+          id: project._id.toString(), 
+          serviceId: project.serviceId?.toString(),
+          imageUrl: project.imageUrl || project.image || project.image_url,
+          galleryImages: project.galleryImages || project.images || []
+        });
       }
     } catch (e) {
       console.error("MongoDB error", e);
