@@ -164,23 +164,34 @@ export default function ProjectsGallery() {
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               if (!target.src.includes('placeholder')) {
-                                console.log(`Image load failed for ${project.name}, falling back to placeholder`);
                                 target.src = "/attached_assets/placeholder.png";
                               }
                             }}
                           />
                           <img
-                            src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
+                            src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0]) || "/attached_assets/placeholder.png"}
                             alt={`${project.name} screen 2`}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (!target.src.includes('placeholder')) {
+                                target.src = "/attached_assets/placeholder.png";
+                              }
+                            }}
                           />
                           {(project.galleryImages && project.galleryImages[2]) && (
                             <img
-                              src={project.galleryImages[2]}
+                              src={project.galleryImages[2] || "/attached_assets/placeholder.png"}
                               alt={`${project.name} screen 3`}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                               loading="lazy"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                if (!target.src.includes('placeholder')) {
+                                target.src = "/attached_assets/placeholder.png";
+                                }
+                              }}
                             />
                           )}
                         </div>
@@ -193,7 +204,6 @@ export default function ProjectsGallery() {
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             if (!target.src.includes('placeholder')) {
-                              console.log(`Image load failed for ${project.name}, falling back to placeholder`);
                               target.src = "/attached_assets/placeholder.png";
                             }
                           }}
