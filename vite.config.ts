@@ -57,6 +57,7 @@ export default defineConfig(async ({ command, mode }) => {
       port: 3000,
       host: true,
       allowedHosts: true,
+      strictPort: true,
     },
     // Ensure proper handling of environment variables
     define: {
