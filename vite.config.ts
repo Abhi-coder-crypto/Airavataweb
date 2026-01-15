@@ -57,10 +57,7 @@ export default defineConfig(async ({ command, mode }) => {
       port: 5000,
       host: "0.0.0.0",
       allowedHosts: true,
-      hmr: {
-        protocol: 'wss',
-        clientPort: 443,
-      },
+      hmr: false,
     },
     // Ensure proper handling of environment variables
     define: {
