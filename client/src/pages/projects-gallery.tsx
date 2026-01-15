@@ -163,7 +163,11 @@ export default function ProjectsGallery() {
                             loading="lazy"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              target.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop";
+                              const currentSrc = target.src;
+                              // If it's a relative path starting with /attached_assets, try to fix it if it fails
+                              // But usually, the error is because the file doesn't exist or path is wrong.
+                              // We already have the logic to try different fields.
+                              console.error(`Failed to load image: ${currentSrc}`);
                             }}
                           />
                           <img

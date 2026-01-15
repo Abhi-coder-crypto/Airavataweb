@@ -322,6 +322,10 @@ export default function ProjectDetails() {
                     src={mainImage}
                     alt={project?.name}
                     className={`${project?.isMobileFirst ? 'max-h-[700px] w-auto' : 'w-full h-auto'} object-contain mx-auto`}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      console.error(`Failed to load main image: ${target.src}`);
+                    }}
                   />
                 </div>
                 
