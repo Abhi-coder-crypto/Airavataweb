@@ -22,6 +22,9 @@ export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: false,
+    server: {
+      hmr: false
+    }
   };
 
   // Create inline Vite config instead of importing it

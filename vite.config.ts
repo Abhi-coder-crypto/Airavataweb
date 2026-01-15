@@ -58,6 +58,9 @@ export default defineConfig(async ({ command, mode }) => {
       host: "0.0.0.0",
       allowedHosts: true,
       hmr: false,
+      watch: {
+        usePolling: true
+      }
     },
     // Ensure proper handling of environment variables
     define: {
