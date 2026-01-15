@@ -274,7 +274,7 @@ export default function ProjectDetails() {
               variant="ghost"
               size="icon"
               className="text-black dark:text-black"
-              data-testid="button-back-projects"
+              data-testid="button-back-gallery"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>

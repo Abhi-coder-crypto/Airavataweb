@@ -83,12 +83,12 @@ export default function ProjectsGallery() {
           transition={{ duration: 0.4 }}
           className="flex items-center justify-between mb-8"
         >
-          <Link href="/">
+          <Link href="/portfolio">
             <Button
               variant="ghost"
               size="icon"
               className="text-black dark:text-black"
-              data-testid="button-back-services"
+              data-testid="button-back-portfolio"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
