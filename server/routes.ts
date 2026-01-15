@@ -60,9 +60,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.log(`[API] Found service: ${service.title} (${serviceIdStr})`);
         query.$or.push({ "serviceId": service._id });
         query.$or.push({ "serviceId": serviceIdStr });
-        query.$or.push({ "serviceId.$oid": serviceIdStr });
         query.$or.push({ "serviceName": service.title });
-        query.$or.push({ "serviceId": { "$oid": serviceIdStr } });
       }
 
       const dbProjects = await db.collection("projects").find(query).toArray();
