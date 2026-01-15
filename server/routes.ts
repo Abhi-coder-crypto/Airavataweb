@@ -114,12 +114,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(filtered);
   });
 
-  app.get("/api/projects/:serviceSlug/:projectId", async (req, res) => {
+  app.get("/api/projects/:projectId", async (req, res) => {
     try {
       const db = await getDb();
       const project = await db.collection("projects").findOne({ _id: new ObjectId(req.params.projectId) });
       if (project) {
-        return res.json({ ...project, id: project._id.toString() });
+        return res.json({ ...project, id: project._id.toString(), serviceId: project.serviceId?.toString() });
+      }
+    } catch (e) {
+      console.error("MongoDB error", e);
+    }
+    const project = projects.find(p => p.id === req.params.projectId);
+    if (!project) return res.status(404).send("Project not found");
+    res.json(project);
+  });
+
+  app.get("/api/projects/:serviceSlug/:projectId", async (req, res) => {
+    try {
+      const db = await getDb();
+      // Try to find by ID first regardless of slug
+      const project = await db.collection("projects").findOne({ _id: new ObjectId(req.params.projectId) });
+      if (project) {
+        return res.json({ ...project, id: project._id.toString(), serviceId: project.serviceId?.toString() });
       }
     } catch (e) {
       console.error("MongoDB error", e);
