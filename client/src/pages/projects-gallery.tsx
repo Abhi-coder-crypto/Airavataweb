@@ -157,10 +157,17 @@ export default function ProjectsGallery() {
                       {project.isMobileFirst ? (
                         <div className="flex items-center justify-center gap-4 h-full w-full">
                           <img
-                            src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
+                            src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0]) || "/attached_assets/placeholder.png"}
                             alt={`${project.name} screen 1`}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (!target.src.includes('placeholder')) {
+                                console.log(`Image load failed for ${project.name}, falling back to placeholder`);
+                                target.src = "/attached_assets/placeholder.png";
+                              }
+                            }}
                           />
                           <img
                             src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
@@ -179,10 +186,17 @@ export default function ProjectsGallery() {
                         </div>
                       ) : (
                         <img
-                          src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
+                          src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0]) || "/attached_assets/placeholder.png"}
                           alt={project.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (!target.src.includes('placeholder')) {
+                              console.log(`Image load failed for ${project.name}, falling back to placeholder`);
+                              target.src = "/attached_assets/placeholder.png";
+                            }
+                          }}
                         />
                       )}
                     </div>
