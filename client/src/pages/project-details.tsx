@@ -349,6 +349,12 @@ export default function ProjectDetails() {
                             alt={`${project?.name} gallery ${index + 1}`}
                             className="max-h-full w-auto object-contain"
                             loading="lazy"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (!target.src.includes('placeholder')) {
+                                target.src = "/attached_assets/placeholder.png";
+                              }
+                            }}
                           />
                           {showViewAll && (
                             <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
