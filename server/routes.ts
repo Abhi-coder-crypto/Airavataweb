@@ -81,15 +81,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         console.log(`[API] Mapping project ${p.name}: id=${id}, serviceId=${serviceId}`);
         
-        const galleryImages = Array.isArray(p.galleryImages) ? p.galleryImages : (Array.isArray(p.images) ? p.images : []);
-        const imageUrl = p.imageUrl || p.image || p.image_url || (galleryImages.length > 0 ? galleryImages[0] : "");
+        // Comprehensive field mapping to support multiple sources/field naming conventions
+        const galleryImages = Array.isArray(p.galleryImages) ? p.galleryImages : 
+                             (Array.isArray(p.images) ? p.images : 
+                             (Array.isArray(p.gallery) ? p.gallery : []));
+                             
+        const imageUrl = p.imageUrl || p.image || p.image_url || p.thumbnail || p.cover || (galleryImages.length > 0 ? galleryImages[0] : "");
 
         return { 
           ...p, 
           id,
           serviceId,
           imageUrl,
-          galleryImages
+          galleryImages,
+          // Support for other common fields
+          description: p.description || p.fullDescription || p.detail || "",
+          technologies: p.technologies || p.techStack || p.tech || [],
+          clientName: p.clientName || p.client || "",
+          duration: p.duration || p.timeframe || ""
         };
       }));
 
