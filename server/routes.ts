@@ -39,7 +39,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/service/:slug", async (req, res) => {
     try {
       const db = await getDb();
-      // Try to find the service by slug first
+      // Try to find the service by slug or title
       const service = await db.collection("services").findOne({ 
         $or: [
           { slug: req.params.slug },
@@ -47,31 +47,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ]
       });
       
-      let dbProjects: any[] = [];
-      const queryConditions: any[] = [
+      let queryConditions: any[] = [
         { serviceSlug: req.params.slug },
-        { category: req.params.slug }
+        { category: req.params.slug },
+        { serviceId: req.params.slug }
       ];
 
       if (service) {
         const serviceIdString = service._id.toString();
-        queryConditions.push({ serviceId: serviceIdString });
+        // The data is stored with serviceId as an ObjectId or nested $oid
         queryConditions.push({ serviceId: service._id });
-        console.log(`Found service in DB for slug ${req.params.slug}: ${serviceIdString}`);
+        queryConditions.push({ serviceId: serviceIdString });
+        // Handle the nested structure seen in some MongoDB exports: { serviceId: { $oid: "..." } }
+        queryConditions.push({ "serviceId.$oid": serviceIdString });
+        
+        console.log(`Searching projects for service: ${service.title} (${serviceIdString})`);
       }
 
-      dbProjects = await db.collection("projects").find({
+      // Add a final fallback: search by part of the service title in the project's metadata if available
+      const dbProjects = await db.collection("projects").find({
         $or: queryConditions
       }).toArray();
       
       if (dbProjects.length > 0) {
-        console.log(`Fetched ${dbProjects.length} projects for ${req.params.slug} from MongoDB`);
+        console.log(`Successfully fetched ${dbProjects.length} projects for ${req.params.slug}`);
         return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
       }
 
-      // Final attempt: search by normalized service name in the project title or description if needed, 
-      // but usually serviceSlug or serviceId should be enough.
-      
+      console.log(`No projects found for ${req.params.slug} in MongoDB. Conditions: ${JSON.stringify(queryConditions)}`);
     } catch (e) {
       console.error("MongoDB error", e);
     }
