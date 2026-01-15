@@ -76,15 +76,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`[API] Successfully fetched ${dbProjects.length} projects for ${slug}`);
       return res.json(dbProjects.map(p => {
         // Handle MongoDB ObjectId conversion safely
-        const id = p._id?.$oid || p._id?.toString() || "";
-        const serviceId = p.serviceId?.$oid || p.serviceId?.toString() || "";
+        const id = p._id?.toString() || "";
+        const serviceId = p.serviceId?.toString() || "";
         
         console.log(`[API] Mapping project ${p.name}: id=${id}, serviceId=${serviceId}`);
         
+        const galleryImages = Array.isArray(p.galleryImages) ? p.galleryImages : (Array.isArray(p.images) ? p.images : []);
+        const imageUrl = p.imageUrl || p.image || p.image_url || (galleryImages.length > 0 ? galleryImages[0] : "");
+
         return { 
           ...p, 
           id,
-          serviceId
+          serviceId,
+          imageUrl,
+          galleryImages
         };
       }));
 

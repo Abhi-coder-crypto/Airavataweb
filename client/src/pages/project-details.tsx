@@ -205,9 +205,10 @@ export default function ProjectDetails() {
 
   const isLoading = projectLoading || serviceLoading;
   
-  const galleryImages = project?.galleryImages || [];
+  const rawGallery = project?.galleryImages || (project as any)?.images || [];
+  const galleryImages = Array.isArray(rawGallery) ? rawGallery : [];
   const mainImage = project?.imageUrl || project?.image || (galleryImages.length > 0 ? galleryImages[0] : "");
-  const allImages = project ? [mainImage, ...galleryImages.filter(img => img !== mainImage)] : [];
+  const allImages = project ? Array.from(new Set([mainImage, ...galleryImages])).filter(Boolean) : [];
   
   const openLightbox = (index: number) => {
     if (allImages.length === 0) return;
