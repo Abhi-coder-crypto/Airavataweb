@@ -23,8 +23,7 @@ export async function setupVite(app: Express, server: Server) {
     middlewareMode: true,
     hmr: { 
       protocol: 'wss',
-      port: 443,
-      secure: true,
+      clientPort: 443,
     },
   };
 
@@ -72,6 +71,9 @@ export async function setupVite(app: Express, server: Server) {
   });
 
   app.use(vite.middlewares);
+
+  // Serve attached_assets directory explicitly
+  app.use("/attached_assets", express.static(path.resolve(process.cwd(), "attached_assets")));
 
   // Serve static files from public folder BEFORE the catch-all route
   app.use(express.static(path.resolve(process.cwd(), "public")));
