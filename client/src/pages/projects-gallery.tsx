@@ -159,26 +159,14 @@ export default function ProjectsGallery() {
                           <img
                             src={project.imageUrl || project.image || (project.galleryImages && project.galleryImages[0])}
                             alt={`${project.name} screen 1`}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              const currentSrc = target.src;
-                              // If it's a relative path starting with /attached_assets, try to fix it if it fails
-                              // But usually, the error is because the file doesn't exist or path is wrong.
-                              // We already have the logic to try different fields.
-                              console.error(`Failed to load image: ${currentSrc}`);
-                            }}
                           />
                           <img
                             src={(project.galleryImages && project.galleryImages[1]) || project.imageUrl || project.image}
                             alt={`${project.name} screen 2`}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop";
-                            }}
                           />
                           {(project.galleryImages && project.galleryImages[2]) && (
                             <img
@@ -195,10 +183,6 @@ export default function ProjectsGallery() {
                           alt={project.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop";
-                          }}
                         />
                       )}
                     </div>
