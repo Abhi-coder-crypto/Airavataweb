@@ -39,12 +39,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const db = await getDb();
       const service = await db.collection("services").findOne({ slug: req.params.slug });
       if (service) {
-        const filtered = await db.collection("projects").find({ serviceId: service._id.toString() }).toArray();
-        return res.json(filtered.map(p => ({ ...p, id: p._id.toString() })));
+        const dbProjects = await db.collection("projects").find({ serviceId: service._id.toString() }).toArray();
+        if (dbProjects.length > 0) {
+          return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
+        }
       }
     } catch (e) {
       console.error("MongoDB error", e);
     }
+    
+    // Fallback logic
     const service = services.find(s => s.slug === req.params.slug);
     if (!service) return res.json([]);
     const filtered = projects.filter(p => p.serviceId === service.id);
