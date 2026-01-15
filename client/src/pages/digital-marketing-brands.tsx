@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "wouter";
-import { Card } from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 

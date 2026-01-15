@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import type { Service, Project } from "../../shared/schema";
+import type { Service, Project } from "@shared/schema";
 import { 
   SiReact, 
   SiTypescript, 

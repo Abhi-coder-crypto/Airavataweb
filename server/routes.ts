@@ -39,14 +39,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/service/:slug", async (req, res) => {
     try {
       const db = await getDb();
-      // 1. Find the service by slug
       const service = await db.collection("services").findOne({ slug: req.params.slug });
       
       if (service) {
         const serviceIdStr = service._id.toString();
         console.log(`Matching projects for service: ${service.title} (${serviceIdStr})`);
 
-        // 2. Query projects matching this service ID
         const dbProjects = await db.collection("projects").find({
           $or: [
             { "serviceId": service._id },
@@ -62,11 +60,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      // 3. Fallback: Search by category or serviceName
       const fallbackProjects = await db.collection("projects").find({
         $or: [
           { category: req.params.slug },
-          { serviceName: service?.title }
+          { serviceName: service?.title },
+          { serviceId: service?._id }
         ]
       }).toArray();
 
@@ -74,17 +72,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.log(`Fetched ${fallbackProjects.length} projects via fallback for ${req.params.slug}`);
         return res.json(fallbackProjects.map(p => ({ ...p, id: p._id.toString() })));
       }
-
-      console.log(`No projects found for ${req.params.slug} in MongoDB.`);
     } catch (e) {
       console.error("MongoDB error", e);
     }
     
-    // 4. Static Fallback
     const staticService = services.find(s => s.slug === req.params.slug);
     if (!staticService) return res.json([]);
     const filtered = projects.filter(p => p.serviceId === staticService.id);
-    console.log(`Falling back to ${filtered.length} static projects for ${req.params.slug}`);
     res.json(filtered);
   });
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
-import { Card } from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import restaurantsImage from "@assets/1_1765462901309.png";
