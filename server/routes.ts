@@ -38,8 +38,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const db = await getDb();
       const service = await db.collection("services").findOne({ slug: req.params.slug });
+      
       if (service) {
-        const dbProjects = await db.collection("projects").find({ serviceId: service._id.toString() }).toArray();
+        const serviceIdString = service._id.toString();
+        // Search projects by either ObjectId or string serviceId to be safe
+        const dbProjects = await db.collection("projects").find({
+          $or: [
+            { serviceId: serviceIdString },
+            { serviceId: service._id }
+          ]
+        }).toArray();
+
         if (dbProjects.length > 0) {
           return res.json(dbProjects.map(p => ({ ...p, id: p._id.toString() })));
         }
