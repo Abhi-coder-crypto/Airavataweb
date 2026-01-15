@@ -1,0 +1,29 @@
+ Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+ WebSocket connection to 'ws://localhost:443/?token=hWSZjXQGXspe' failed: 
+setupWebSocket @ /@vite/client:536
+ [vite] server connection lost. Polling for restart...
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+ Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+warnOnce @ framer-motion.js:696
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+localhost:443/:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+  GET http://localhost:443/ net::ERR_CONNECTION_REFUSED
+ping @ /@vite/client:736
+waitForSuccessfulPing @ /@vite/client:755
