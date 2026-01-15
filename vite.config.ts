@@ -60,7 +60,8 @@ export default defineConfig(async ({ command, mode }) => {
       hmr: false,
       watch: {
         usePolling: true
-      }
+      },
+      cors: true
     },
     // Ensure proper handling of environment variables
     define: {
