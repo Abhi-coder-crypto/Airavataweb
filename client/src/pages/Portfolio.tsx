@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Service } from "../../shared/schema";
+import type { Service } from "@shared/schema";
 
 // Import images exactly as they were used in the original
 import websiteDevImg from "@assets/2_1765447271354.png";
